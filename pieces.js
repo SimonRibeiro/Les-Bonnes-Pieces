@@ -37,21 +37,36 @@ for (let i = 0; i < pieces.length; i++) {
  }
  
  //gestion des boutons 
-const boutonTrier = document.querySelector(".btn-trier");
+const piecesOrdonnees = Array.from(pieces); //Cré une copie de la liste pour que sort() ne modifie pas l'originale (action in-place)
 
-boutonTrier.addEventListener("click", function () {
-    const piecesOrdonnees = Array.from(pieces);
-    piecesOrdonnees.sort(function (a, b) {
-        return a.prix - b.prix;
+const boutonTrierCroissant = document.querySelector(".btn-trier-croissant");
+boutonTrierCroissant.addEventListener("click", function () {
+    piecesOrdonnees.sort(function (a, b) { //Ou piecesOrdonnees.sort((a,b) => a.prix - b.prix)
+        return a.prix - b.prix; //Tri dans l'ordre croissant
      });
      console.log(piecesOrdonnees);
 });
 
-const boutonFiltrer = document.querySelector(".btn-filtrer");
+const boutonTrierDecroissant = document.querySelector(".btn-trier-decroissant");
+boutonTrierDecroissant.addEventListener("click", function () {
+    piecesOrdonnees.sort(function (a, b) {
+        return b.prix - a.prix; //Tri dans décroissant
+     });
+     console.log(piecesOrdonnees);
+});
 
-boutonFiltrer.addEventListener("click", function () {
-    const piecesFiltrees = pieces.filter(function (piece) {
+const boutonFiltrerPrix = document.querySelector(".btn-filtrer-prix");
+boutonFiltrerPrix.addEventListener("click", function () {
+    const piecesFiltrees = pieces.filter(function (piece) { //On déclare directement la nouvelle liste qui contientra les retours de filter()
         return piece.prix <= 35;
+    });
+   console.log(piecesFiltrees)
+});
+
+const boutonFiltrerDescription = document.querySelector(".btn-filtrer-description");
+boutonFiltrerDescription.addEventListener("click", function () {
+    const piecesFiltrees = pieces.filter(function (piece) {
+        return piece.description !== undefined;
     });
    console.log(piecesFiltrees)
 });
