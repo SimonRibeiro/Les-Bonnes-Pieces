@@ -73,21 +73,43 @@ boutonNoDescription.addEventListener("click", function () {
    console.log(piecesFiltrees);
 });
 
-const noms = pieces.map(piece => piece.nom);
+
+//Création de la liste de pieces abordables
+const nomsAbordables = pieces.map(piece => piece.nom);
 for(let i = pieces.length -1 ; i >= 0; i--){
     if(pieces[i].prix > 35){
-        noms.splice(i,1);
+        nomsAbordables.splice(i,1);
     }
 }
 
-//Création de la liste
+//Création de la liste HTML
 const abordablesElements = document.createElement('ul');
 //Ajout de chaque nom à la liste
-for(let i=0; i < noms.length ; i++){
+for(let i=0; i < nomsAbordables.length ; i++){
     const nomElement = document.createElement('li');
-    nomElement.innerText = noms[i];
+    nomElement.innerText = nomsAbordables[i];
     abordablesElements.appendChild(nomElement)
 }
 // Ajout de l'en-tête puis de la liste au bloc résultats filtres
 document.querySelector('.abordables')
     .appendChild(abordablesElements)
+
+
+//Création de la liste de pieces disponibles
+const nomsDisponibles = pieces.map(piece => piece.nom);
+const prixDisponibles = pieces.map(piece => piece.prix);
+for(let i = pieces.length -1 ; i >= 0; i--){
+    if(pieces[i].disponibilite = false){
+        nomsDisponibles.splice(i,1);
+        prixDisponibles.splice(i,1);
+    }
+}
+
+const disponiblesElements = document.createElement('ul');
+for(let i=0; i < nomsDisponibles.length ; i++){
+    const nomElement = document.createElement('li');
+    nomElement.innerText = `${nomsDisponibles[i]} – ${prixDisponibles[i]} €`;
+    disponiblesElements.appendChild(nomElement)
+}
+document.querySelector('.disponibles')
+    .appendChild(disponiblesElements)
