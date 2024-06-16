@@ -91,6 +91,16 @@ for(let i = pieces.length -1 ; i >= 0; i--){
     }
 }
 console.log(noms)
+
+const rangePrixMax = document.getElementById("prix-max");
+rangePrixMax.addEventListener("change", () => {
+    const piecesFiltrees = pieces.filter((piece) => {
+        return piece.prix <= rangePrixMax.value
+    });
+    document.querySelector(".fiches").innerHTML = "";
+    genererPieces(piecesFiltrees);
+});
+
 //Création de l'en-tête
 
 const pElement = document.createElement('p')
