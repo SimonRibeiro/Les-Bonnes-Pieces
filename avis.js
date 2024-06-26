@@ -3,22 +3,30 @@ export function ajoutListenersAvis() {
     const piecesElements = document.querySelectorAll(".fiches article button");
  
     for (let i = 0; i < piecesElements.length; i++) {
- 
-     piecesElements[i].addEventListener("click", async function (event) {
- 
-        const id = event.target.dataset.id;
-        const reponse = await fetch("http://localhost:8081/pieces/" + id + "/avis");
-        const avis = await reponse.json();
-        const pieceElement = event.target.parentElement;
 
-        const avisElement = document.createElement("p");
-        for (let i = 0; i < avis.length; i++) {
-            avisElement.innerHTML += `<b>${avis[i].utilisateur}:</b> ${avis[i].commentaire} <br>`;
-        }
-        pieceElement.appendChild(avisElement);
- 
+      piecesElements[i].addEventListener("click", async function (event) { 
+         const id = event.target.dataset.id;
+         let pieceClass = document.querySelector(`.class${id}`)
+
+         if (pieceClass === null) {
+            const reponse = await fetch("http://localhost:8081/pieces/" + id + "/avis");
+            const avis = await reponse.json();
+            const pieceElement = event.target.parentElement;
+            const avisElement = document.createElement("p");
+            avisElement.classList.toggle(`class${id}`)
+
+            for (let i = 0; i < avis.length; i++) {
+               avisElement.innerHTML += `<b>${avis[i].utilisateur}:</b> ${avis[i].commentaire} <br>`;
+            }
+            pieceElement.appendChild(avisElement);
+            event.target.textContent = "Cacher les avis"
+
+         } else {
+            pieceClass.innerHTML = ""
+            pieceClass.classList.toggle(`class${id}`)
+            event.target.textContent = "Afficher les avis"
+         }
      });
- 
     }
  }
  
