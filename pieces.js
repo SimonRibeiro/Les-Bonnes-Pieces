@@ -19,6 +19,8 @@ function genererPieces(pieces){
         imageElement.src = article.image;
         const nomElement = document.createElement("h2");
         nomElement.innerText = article.nom;
+        const idElement = document.createElement("p")
+        idElement.innerText = "Identifiant de la pièce : " + article.id
         const prixElement = document.createElement("p");
         prixElement.innerText = `Prix: ${article.prix} € (${article.prix < 35 ? "€" : "€€€"})`;
         const categorieElement = document.createElement("p");
@@ -36,6 +38,7 @@ function genererPieces(pieces){
         sectionFiches.appendChild(pieceElement);
         pieceElement.appendChild(imageElement);
         pieceElement.appendChild(nomElement);
+        pieceElement.appendChild(idElement)
         pieceElement.appendChild(prixElement);
         pieceElement.appendChild(categorieElement);
         pieceElement.appendChild(descriptionElement);
