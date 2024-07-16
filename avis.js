@@ -80,5 +80,51 @@ export async function afficherGraphiqueAvis() {
         document.querySelector("#graphique-avis"),
         config,
     );
+
+    const piecesJSON = window.localStorage.getItem("pieces")
+
+    const pieces = JSON.parse(piecesJSON)
+
+    let nbCommentairesDispo = 0
+    let nbCommentairesNonDispo = 0
+
+    for (let i = 0; i < avis.length; i++) {
+        const piece = pieces.find(p => p.id === avis[i].pieceId); //Fonctionnement a clarifier
+
+        if (piece) {
+            if (piece.disponibilite) {
+                nbCommentairesDispo++;
+            } else {
+                nbCommentairesNonDispo++;
+            }
+        }
+    }
+
+
+    const labelsDispo = ["Pièces disponibles", "Pièces non disponibles"]
+
+
+    const dataDispo = {
+        labels: labelsDispo,
+        datasets: [{
+            label: "Nombre d'avis",
+            data: [nbCommentairesDispo, nbCommentairesNonDispo],
+            backgroundColor: "rgba(0, 230, 255, 1)",
+        }],
+    };
+
+
+    const configDispo = {
+        type: 'bar',
+        data: dataDispo,
+        }
+
+    new Chart(
+        document.querySelector("#graphique-avis-disponibilite"),
+        configDispo,
+    );
+
 }
+
+
 
