@@ -89,7 +89,7 @@ export async function afficherGraphiqueAvis() {
     let nbCommentairesNonDispo = 0
 
     for (let i = 0; i < avis.length; i++) {
-        const piece = pieces.find(p => p.id === avis[i].pieceId); //Fonctionnement a clarifier
+        const piece = pieces.find(p => p.id === avis[i].pieceId); //Methode parcourant pieces et attribuant au paramètre (p), la propriété (.id) avec la valleur avis[i].pieceId
 
         if (piece) {
             if (piece.disponibilite) {
