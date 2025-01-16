@@ -1,3 +1,4 @@
+/* global Chart */
 export function ajoutListenersAvis() {
 
     const piecesElements = document.querySelectorAll(".fiches article button");

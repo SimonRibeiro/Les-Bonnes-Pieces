@@ -1,6 +1,6 @@
 import { ajoutListenersAvis, ajoutListenerEnvoyerAvis, afficherAvis, afficherGraphiqueAvis } from "./avis.js";
 //Récupération des pièces eventuellement stockées dans le localStorage
-let pieces = window.localStorage.getItem('pieces');
+let pieces = window.localStorage.getItem("pieces");
 
 if (pieces === null) {
     // Récupération des pièces depuis l'API
@@ -14,7 +14,7 @@ if (pieces === null) {
     pieces = JSON.parse(pieces);
 }
 // on appel la fonction pour ajouter le listener au formulaire
-ajoutListenerEnvoyerAvis()
+ajoutListenerEnvoyerAvis();
 
 function genererPieces(pieces) {
     for (let i = 0; i < pieces.length; i++) {
@@ -71,6 +71,7 @@ for (let i = 0; i < pieces.length; i++) {
     }
 }
 
+
 //gestion des bouttons 
 const boutonTrier = document.querySelector(".btn-trier");
 
@@ -86,11 +87,11 @@ boutonTrier.addEventListener("click", function () {
 const boutonFiltrer = document.querySelector(".btn-filtrer");
 
 boutonFiltrer.addEventListener("click", function () {
-    const piecesFiltrees = pieces.filter(function (piece) {
-        return piece.prix <= 35;
-    });
-    document.querySelector(".fiches").innerHTML = "";
-    genererPieces(piecesFiltrees);
+	const piecesFiltrees = pieces.filter(function (piece) {
+		return piece.prix <= 35;
+	});
+	document.querySelector(".fiches").innerHTML = "";
+	genererPieces(piecesFiltrees);
 });
 
 //Correction Exercice
@@ -108,11 +109,11 @@ boutonDecroissant.addEventListener("click", function () {
 const boutonNoDescription = document.querySelector(".btn-nodesc");
 
 boutonNoDescription.addEventListener("click", function () {
-    const piecesFiltrees = pieces.filter(function (piece) {
-        return piece.description
-    });
-    document.querySelector(".fiches").innerHTML = "";
-    genererPieces(piecesFiltrees);
+	const piecesFiltrees = pieces.filter(function (piece) {
+		return piece.description;
+	});
+	document.querySelector(".fiches").innerHTML = "";
+	genererPieces(piecesFiltrees);
 });
 
 const noms = pieces.map(piece => piece.nom);
@@ -121,13 +122,13 @@ for (let i = pieces.length - 1; i >= 0; i--) {
         noms.splice(i, 1);
     }
 }
-console.log(noms)
+console.log(noms);
 //Création de l'en-tête
 
-const pElement = document.createElement('p')
+const pElement = document.createElement("p");
 pElement.innerText = "Pièces abordables";
 //Création de la liste
-const abordablesElements = document.createElement('ul');
+const abordablesElements = document.createElement("ul");
 //Ajout de chaque nom à la liste
 for (let i = 0; i < noms.length; i++) {
     const nomElement = document.createElement('li');
@@ -135,12 +136,12 @@ for (let i = 0; i < noms.length; i++) {
     abordablesElements.appendChild(nomElement);
 }
 // Ajout de l'en-tête puis de la liste au bloc résultats filtres
-document.querySelector('.abordables')
-    .appendChild(pElement)
-    .appendChild(abordablesElements);
+document.querySelector(".abordables")
+	.appendChild(pElement)
+	.appendChild(abordablesElements);
 
-const nomsDisponibles = pieces.map(piece => piece.nom)
-const prixDisponibles = pieces.map(piece => piece.prix)
+const nomsDisponibles = pieces.map(piece => piece.nom);
+const prixDisponibles = pieces.map(piece => piece.prix);
 
 for (let i = pieces.length - 1; i >= 0; i--) {
     if (pieces[i].disponibilite === false) {
@@ -149,7 +150,7 @@ for (let i = pieces.length - 1; i >= 0; i--) {
     }
 }
 
-const disponiblesElement = document.createElement('ul');
+const disponiblesElement = document.createElement("ul");
 
 for (let i = 0; i < nomsDisponibles.length; i++) {
     const nomElement = document.createElement('li');
@@ -157,9 +158,9 @@ for (let i = 0; i < nomsDisponibles.length; i++) {
     disponiblesElement.appendChild(nomElement);
 }
 
-const pElementDisponible = document.createElement('p')
+const pElementDisponible = document.createElement("p");
 pElementDisponible.innerText = "Pièces disponibles:";
-document.querySelector('.disponibles').appendChild(pElementDisponible).appendChild(disponiblesElement)
+document.querySelector(".disponibles").appendChild(pElementDisponible).appendChild(disponiblesElement);
 
 const inputPrixMax = document.querySelector('#prix-max')
 inputPrixMax.addEventListener('input', function () {
@@ -177,3 +178,4 @@ boutonMettreAJour.addEventListener("click", function () {
 });
 
 await afficherGraphiqueAvis();
+
