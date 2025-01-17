@@ -1,5 +1,5 @@
 # Les Bonnes Pièces - Site de vente
-![Cover image](image/cover.JPG)
+![Cover image](images/cover.JPG)
 
 Application front-end de site de vente.
 Codé à partir du [fork d'OpenClassrooms](https://github.com/OpenClassrooms-Student-Center/7697016-Front-End.1) pour le cours ["Créez des pages web dynamiques avec JavaScript"](https://openclassrooms.com/fr/courses/7697016-creez-des-pages-web-dynamiques-avec-javascript).
