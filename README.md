@@ -16,4 +16,4 @@ Après avoir cloné le repositoire vous avez plusieurs options pour lancer le pr
 
 Dans tous les cas il faut cloner et démarrer le [repositoire Back-end](https://github.com/SimonRibeiro/7697016-Back-End) pour que le site fonctionne.
 
-Il faut nécessairement passer par un terminal (différent, si on en utilise déjà un pour faire tourner le front-end) : pour installer ses dépendances (avec `npm install`) puis de le lancer (avec `npm start`).
+Il faut nécessairement passer par un terminal (différent, si on en utilise déjà un pour faire tourner le front-end) : pour installer ses dépendances (avec `npm install`) puis le lancer (avec `npm start`).
